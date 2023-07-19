@@ -74,15 +74,14 @@ def summarize_text(url, summary_level, creative_level):
     web_data = loader.load()
 
     if summary_level == "Child":
-        prompt_template = """ Write a concise summary in 3 to 4 sentence:
-            context: Please provide your output in a manner that a 3 year old kid would understand, use simple words and examples such that 3 year old can relate to
-            Use the tone of a parent explaining to a child and if possible explain it with a story
+        prompt_template = """ Write a 3 to 4 sentence summary of the following article. 
+        Use only language a small child would understand. 
 
             {text}
 
             Summary:"""
     else:
-        prompt_template = """ Write a concise summary in 3 to 4 sentence:
+        prompt_template = """ Write a 3 to 4 sentence summary of the following article. 
             {text}
 
             Summary:"""
