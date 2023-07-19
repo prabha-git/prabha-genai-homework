@@ -1,4 +1,5 @@
 import os
+import json
 import streamlit as st
 import feedparser
 import vertexai
@@ -9,11 +10,20 @@ from langchain.chains.summarize import load_summarize_chain
 from langchain.prompts import PromptTemplate
 
 # Retrieve the JSON key file path from Streamlit Secrets
-key_path = st.secrets["gcp_genai_con"]
-print(key_path
+secret = st.secrets["gcp_genai_con"]
 
-# Set the environment variable to point to the key file
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
+
+# Define the file path (this file will be created in the same directory as your Streamlit script)
+file_path = "service_account.json"
+
+# Write the dictionary to this file
+with open(file_path, 'w') as f:
+    json.dump(dict(secret), f)
+
+# Set the environment variable to the path of the created file
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = file_path
+
+
 
 vertexai.init(project='prabha-sandbox')
 
