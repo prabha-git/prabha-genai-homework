@@ -10,6 +10,7 @@ from langchain.prompts import PromptTemplate
 
 # Retrieve the JSON key file path from Streamlit Secrets
 key_path = st.secrets["gcp_genai_con"]
+print(key_path
 
 # Set the environment variable to point to the key file
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
