@@ -100,6 +100,9 @@ def read_rss(url, start_date, end_date, summary_level, creative_level):
     feed = feedparser.parse(url)
     posts = feed.entries
 
+    # Sort the posts in descending order of published date
+    posts.sort(key=lambda x: x.published_parsed, reverse=True)
+
     summaries = []
     counter = 1
 
