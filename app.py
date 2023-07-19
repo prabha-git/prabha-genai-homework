@@ -7,6 +7,12 @@ from langchain.document_loaders import WebBaseLoader
 from langchain.chains.summarize import load_summarize_chain
 from langchain.prompts import PromptTemplate
 
+# Retrieve the JSON key file path from Streamlit Secrets
+key_path = st.secrets["gcp_genai_con"]
+
+# Set the environment variable to point to the key file
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
+
 vertexai.init(project='prabha-sandbox')
 
 creative_level_map = {
