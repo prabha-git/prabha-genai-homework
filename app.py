@@ -5,6 +5,7 @@ import feedparser
 import vertexai
 from langchain.llms import VertexAI
 from datetime import datetime
+from datetime import timedelta
 from langchain.document_loaders import WebBaseLoader
 from langchain.chains.summarize import load_summarize_chain
 from langchain.prompts import PromptTemplate
@@ -47,14 +48,17 @@ st.set_page_config(
 
 ##### User Inputs
 rss_url = st.sidebar.text_input("Enter RSS Feed URL", "http://feeds.bbci.co.uk/news/rss.xml")
-summary_level = st.sidebar.radio("I am a", ["Child", "Adult"],index=1)
-creative_level = st.sidebar.radio("Creative Level", ["Low", "Medium", "High"])
 
+# Use date_input to create a calendar widget
 # Use date_input to create a calendar widget
 date_range = st.sidebar.date_input(
     "Select a date range",
-    value=(datetime(2023, 7, 1), datetime(2023, 7, 16))
+    value=(datetime.now() - timedelta(weeks=4), datetime.now())
 )
+summary_level = st.sidebar.radio("I am a", ["Child", "Adult"],index=1)
+creative_level = st.sidebar.radio("Creative Level", ["Low", "Medium", "High"])
+
+
 
 # Extract start_date and end_date from date_range
 start_date, end_date = date_range
